@@ -14,16 +14,17 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        observeResponse()
         val tv:Button = findViewById(R.id.tv)
         tv.setOnClickListener {
-            viewModel.makeRequest()
+            viewModel.getLast5News()
         }
     }
 
     private fun observeResponse(){
-        viewModel.result.observe(this) {
+        viewModel.last5News.observe(this) {
             if (it != null) {
-                Log.d("ответ", "${it.success}")
+                Log.d("ответ", "${it.size}")
             }
         }
     }

@@ -10,7 +10,7 @@ class TokenInterceptor : Interceptor {
     override fun intercept(chain: Interceptor.Chain): Response {
         //rewrite the request to add bearer token
         val newRequest: Request = chain.request().newBuilder()
-            .header("Authorization", "Bearer 64343ea1293fa64343ea1293fd")
+            .header("Authorization", "Token 64ef5ecb0bd8c64ef5ecb0bd8f")
             .build()
         return chain.proceed(newRequest)
     }
