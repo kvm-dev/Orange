@@ -69,3 +69,11 @@ data class SymbolsResponseItem(
     val id: Int,
     val ticker: String
 )
+
+class MessageResponse : ArrayList<MessageResponseItem>()
+
+data class MessageResponseItem(
+    val message: String,
+    val bidId: Int?,
+    val price: Int?
+)
