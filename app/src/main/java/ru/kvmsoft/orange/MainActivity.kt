@@ -1,12 +1,12 @@
 package ru.kvmsoft.orange
 
-import android.annotation.SuppressLint
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.Button
-import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 
 class MainActivity : AppCompatActivity() {
     val viewModel by lazy { ViewModelProvider(this)[MainViewModel::class.java] }
@@ -15,17 +15,39 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         observeResponse()
-        val tv:Button = findViewById(R.id.tv)
+        val tv: Button = findViewById(R.id.tv)
         tv.setOnClickListener {
             viewModel.getLast5News()
         }
+
+
+        val newsManager =
+            LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
+        val newsRecycler = findViewById<RecyclerView>(R.id.news_recycler)
+        newsRecycler.layoutManager = newsManager
+
+//        viewModel.refreshLatestDeal()
+        viewModel.last5News.observe(this) {
+            newsRecycler.adapter = RecyclerAdapter(it)
+        }
+
     }
 
-    private fun observeResponse(){
+    private fun observeResponse() {
         viewModel.last5News.observe(this) {
             if (it != null) {
                 Log.d("ответ", "${it.size}")
             }
         }
     }
-    }
+//
+//    private fun observeNews(): ArrayList<LastItem>? {
+//        viewModel.last5News.observe(this) {
+//            if (it != null) {
+//                return@observe
+//            }
+//        }
+//        return null
+//    }
+
+}
