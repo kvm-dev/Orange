@@ -1,9 +1,10 @@
 package ru.kvmsoft.orange
 
-import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 class MainViewModel : ViewModel() {
@@ -14,7 +15,6 @@ class MainViewModel : ViewModel() {
     val buyStock: MutableLiveData<BuyStockResponse> = MutableLiveData()
     val sellStock: MutableLiveData<SellStockResponse> = MutableLiveData()
     val symbols: MutableLiveData<SymbolsResponse> = MutableLiveData()
-
 
     fun getLast5News() {
 //        CoroutineScope(Dispatchers.IO).launch {
@@ -79,5 +79,56 @@ class MainViewModel : ViewModel() {
         }
     }
 
+     fun makeOrderBestPriceBuy(requst: BestPriceRequest){
+        CoroutineScope(Dispatchers.IO).launch {
+                val rLocal = RetrofitHelper.getInstance().create(Api::class.java)
+                val resultLocal = rLocal.makeOrderBestPriceBuy(requst)
+            if(resultLocal.isSuccessful){
+                val result  = resultLocal.body()
+            }
+            else{
+                //something
+            }
+        }
+    }
+
+    fun makeOrderBestPriceSell(requst: BestPriceRequest){
+        CoroutineScope(Dispatchers.IO).launch {
+            val rLocal = RetrofitHelper.getInstance().create(Api::class.java)
+            val resultLocal = rLocal.makeOrderBestPriceSell(requst)
+            if(resultLocal.isSuccessful){
+                val result  = resultLocal.body()
+            }
+            else{
+                //something
+            }
+        }
+    }
+
+    fun makeOrderLimitPriceSell(requst: LimitPriceRequest){
+        CoroutineScope(Dispatchers.IO).launch {
+            val rLocal = RetrofitHelper.getInstance().create(Api::class.java)
+            val resultLocal = rLocal.makeOrderLimitPriceSell(requst)
+            if(resultLocal.isSuccessful){
+                val result  = resultLocal.body()
+            }
+            else{
+                //something
+            }
+        }
+    }
+
+    fun makeOrderLimitPriceBuy(requst: LimitPriceRequest){
+        CoroutineScope(Dispatchers.IO).launch {
+            val rLocal = RetrofitHelper.getInstance().create(Api::class.java)
+            val resultLocal = rLocal.makeOrderLimitPriceBuy(requst)
+            if(resultLocal.isSuccessful){
+                val result  = resultLocal.body()
+            }
+            else{
+                //something
+            }
+        }
+    }
 
 }
