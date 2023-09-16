@@ -45,7 +45,7 @@ data class Asset(
 class SellStockResponse : ArrayList<SellStockResponseItem>()
 
 data class SellStockResponseItem(
-    val bids: List<Bid>,
+    var bids: List<Bid>,
     val id: Int,
     val ticker: String
 )
@@ -58,7 +58,7 @@ data class Bid(
 class BuyStockResponse : ArrayList<BuyStockResponseItem>()
 
 data class BuyStockResponseItem(
-    val bids: List<Bid>,
+    var bids: List<Bid>,
     val id: Int,
     val ticker: String
 )

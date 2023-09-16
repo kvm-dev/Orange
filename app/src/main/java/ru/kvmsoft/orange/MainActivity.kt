@@ -15,9 +15,18 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         observeResponse()
+        viewModel.getSymbols()
+//        viewModel.getLast5News()
+//        viewModel.getLastOneMinuteNews()
+//        viewModel.getLastNew()
+//        viewModel.getSellStock()
+//        viewModel.getBuyStock()
+
         val tv: Button = findViewById(R.id.tv)
         tv.setOnClickListener {
-            viewModel.getLast5News()
+//            viewModel.getLast5News()
+            Log.d("ждем", "size is ${viewModel.symbols.value?.size}")
+            viewModel.createItems()
         }
 
 
