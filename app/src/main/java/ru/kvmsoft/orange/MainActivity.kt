@@ -27,9 +27,9 @@ class MainActivity : AppCompatActivity() {
         newsRecycler.layoutManager = newsManager
 
 //        viewModel.refreshLatestDeal()
-        viewModel.last5News.observe(this) {
-            newsRecycler.adapter = RecyclerAdapter(it)
-        }
+//        viewModel.last5News.observe(this) {
+//            newsRecycler.adapter = RecyclerAdapter(it)
+//        }
 
     }
 
