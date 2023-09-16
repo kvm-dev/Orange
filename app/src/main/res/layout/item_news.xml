@@ -26,7 +26,12 @@
             android:orientation="horizontal"
             android:layout_margin="8dp">
 
-
+            <TextView
+                android:id="@+id/item_news_comp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="фывлор "
+                />
         </androidx.appcompat.widget.LinearLayoutCompat>
 
     </androidx.appcompat.widget.LinearLayoutCompat>
