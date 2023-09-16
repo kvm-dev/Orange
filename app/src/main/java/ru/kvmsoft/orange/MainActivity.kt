@@ -16,11 +16,11 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         observeResponse()
         viewModel.getSymbols()
-//        viewModel.getLast5News()
-//        viewModel.getLastOneMinuteNews()
-//        viewModel.getLastNew()
-//        viewModel.getSellStock()
-//        viewModel.getBuyStock()
+        viewModel.getLast5News()
+        viewModel.getLastOneMinuteNews()
+        viewModel.getLastNew()
+        viewModel.getSellStock()
+        viewModel.getBuyStock()
 
         val tv: Button = findViewById(R.id.tv)
         tv.setOnClickListener {
@@ -36,9 +36,9 @@ class MainActivity : AppCompatActivity() {
         newsRecycler.layoutManager = newsManager
 
 //        viewModel.refreshLatestDeal()
-//        viewModel.last5News.observe(this) {
-//            newsRecycler.adapter = RecyclerAdapter(it)
-//        }
+        viewModel.itemList.observe(this) {
+            newsRecycler.adapter = RecyclerAdapter(it)
+        }
 
     }
 

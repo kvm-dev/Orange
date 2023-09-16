@@ -178,25 +178,28 @@ class MainViewModel : ViewModel() {
              Log.d("symbol size", "${symbols.value?.size}")
         //test
         symbols.value?.forEach {symbol->
-            if(lastNewAffectedCompanies.keys.contains(symbol.ticker.split("Oranges/")[1]) ||
+            Log.d("symb", "${symbol.ticker.replace("Oranges/", "")}.")
+            if(lastNewAffectedCompanies.keys.contains(symbol.ticker.replace("Oranges/", "")) ||
                 lastOneNewsAffectedCompanies.keys.contains(symbol.ticker.split("Oranges/")[1]) ||
                 lastFiveNewsAffectedCompanies.keys.contains(symbol.ticker.split("Oranges/")[1])){
+                Log.d("xxx", "build")
                 recyclerItems.add(RecyclerItem(
                     companyId = symbol.id,
-                    companyName = symbol.ticker,
-                    fiveMinRate = lastFiveNewsAffectedCompanies[symbol.ticker]?.toString()?: "0",
-                    oneMinRate = lastOneNewsAffectedCompanies[symbol.ticker]?.toString()?: "0",
-                    lastNewRate = lastNewAffectedCompanies[symbol.ticker]?.toString()?: "0",
+                    companyName = symbol.ticker.split("Oranges/")[1],
+                    fiveMinRate = lastFiveNewsAffectedCompanies[symbol.ticker.split("Oranges/")[1]]?.toString()?: "0",
+                    oneMinRate = lastOneNewsAffectedCompanies[symbol.ticker.split("Oranges/")[1]]?.toString()?: "0",
+                    lastNewRate = lastNewAffectedCompanies[symbol.ticker.split("Oranges/")[1]]?.toString()?: "0",
                     bestBuyOfferId = sortedSellStock?.find { it.ticker==symbol.ticker }?.id?: 0,
-                    bestBuyOfferPrice = sortedSellStock?.find { it.ticker==symbol.ticker }?.bids?.first()?.price?.toInt()?: 0,
-                    bestBuyOfferCount = sortedSellStock?.find { it.ticker==symbol.ticker }?.bids?.first()?.quantity?: 0,
-                    bestSellOfferId = sortedBuyStock?.find { it.ticker==symbol.ticker }?.id?: 0,
-                    bestSellOfferPrice = sortedBuyStock?.find { it.ticker==symbol.ticker }?.bids?.last()?.price?.toInt()?:0,
-                    bestSellOfferCount = sortedBuyStock?.find { it.ticker==symbol.ticker }?.bids?.last()?.quantity?:0,
+                    bestBuyOfferPrice = sortedSellStock?.find { it.ticker==symbol.ticker.split("Oranges/")[1] }?.bids?.first()?.price?.toInt()?: 0,
+                    bestBuyOfferCount = sortedSellStock?.find { it.ticker==symbol.ticker.split("Oranges/")[1] }?.bids?.first()?.quantity?: 0,
+                    bestSellOfferId = sortedBuyStock?.find { it.ticker==symbol.ticker.split("Oranges/")[1] }?.id?: 0,
+                    bestSellOfferPrice = sortedBuyStock?.find { it.ticker==symbol.ticker.split("Oranges/")[1] }?.bids?.last()?.price?.toInt()?:0,
+                    bestSellOfferCount = sortedBuyStock?.find { it.ticker==symbol.ticker.split("Oranges/")[1] }?.bids?.last()?.quantity?:0,
                 )
                 )
             }
         }
              Log.d("финалочка", "${recyclerItems.size}")
+             itemList.value = recyclerItems
 }
     }
